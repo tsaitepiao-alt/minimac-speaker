@@ -18,7 +18,7 @@
 | 參數化建模程式 | [`cad/build_minimac.py`](cad/build_minimac.py) | build123d，改尺寸重跑即重新出圖 |
 | 電路接線圖 | [`hw/schematic.svg`](hw/schematic.svg) · [PNG](hw/schematic.png) | 全中文標註 |
 | 採購清單 | [BOM.md](BOM.md) | 每項都有賣場連結與單價 |
-| 韌體 | [`firmware/`](firmware/) | ESP32 A2DP＋頻譜＋歌詞＋旋鈕（已通過編譯：1.22 MB / 93%） |
+| 韌體 | [`firmware/`](firmware/) | ESP32 A2DP＋頻譜＋歌詞＋旋鈕（已通過編譯：1.22 MB / 38%） |
 
 ## 尺寸核對（自動計算，不是目測）
 

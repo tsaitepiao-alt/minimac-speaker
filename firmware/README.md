@@ -23,7 +23,7 @@ arduino-cli upload  --fqbn esp32:esp32:esp32 -p /dev/cu.usbserial-XXXX .
 
 沒有 `secrets.h` 也能編譯，只是不啟用歌詞（`HAVE_WIFI` 會自動變 0）。
 
-> 用 `PartitionScheme=huge_app`（3 MB APP 分割）才不會卡在 93%；預設分割只剩 93 KB 餘裕。
+> 一律加 `--board-options PartitionScheme=huge_app`（3 MB APP）。用預設分割會佔 93%（只剩 93 KB 餘裕），改一次就變 38%。
 
 ## 功能與操作
 
@@ -56,7 +56,7 @@ arduino-cli upload  --fqbn esp32:esp32:esp32 -p /dev/cu.usbserial-XXXX .
 
 ## 已驗證 / 未驗證（誠實聲明）
 
-- ✅ 編譯：`arduino-cli compile --fqbn esp32:esp32:esp32` → **Sketch uses 1,220,348 bytes (93%)**、RAM 18%（esp32 core 3.3.12、ESP32-A2DP 1.8.12、ArduinoJson 7.4.3）
+- ✅ 編譯：`arduino-cli compile --fqbn esp32:esp32:esp32` → **Sketch uses 1,220,380 bytes (38%，huge_app 3 MB 分割)**、RAM 18%（esp32 core 3.3.12、ESP32-A2DP 1.8.12、ArduinoJson 7.4.3）
 - ⚠️ 未上實機測試：本機沒有實體 ESP32＋螢幕＋擴大器，這份韌體還沒在硬體上跑過。
   第一次上電建議先只接 I2S 與喇叭，確認有聲音再接螢幕與編碼器。
 - ⚠️ 歌詞來源 lrclib.net 為免費公開 API，命中率依曲目而異；抓不到就只顯示歌名。
