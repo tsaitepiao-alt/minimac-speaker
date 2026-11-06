@@ -38,6 +38,15 @@ MAX98357A      22 × 16 × 5   平放              ✓
 
 數字由 `cad/build_minimac.py` 算出並寫進 `cad/export/dims.json`，網頁直接讀同一份檔案，不是手打的。
 
+## 驗證狀態（`./tools/check.sh`）
+
+```
+① 機構建模與尺寸核對    干涉/超界：無 → CAD: OK
+② STL 有效性            body/faceplate/knob/pr_clamp 全部 watertight=True、單一實體
+③ 韌體編譯              1,220,380 bytes (38%, huge_app)、RAM 18% → FIRMWARE: OK
+結果：CHECK OK
+```
+
 ## 列印建議
 
 - 材料 **PETG**（PLA 夏天車內或大音量震動會軟）
