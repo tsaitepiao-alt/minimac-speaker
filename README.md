@@ -18,7 +18,7 @@
 | 參數化建模程式 | [`cad/build_minimac.py`](cad/build_minimac.py) | build123d，改尺寸重跑即重新出圖 |
 | 電路接線圖 | [`hw/schematic.svg`](hw/schematic.svg) · [PNG](hw/schematic.png) | 全中文標註 |
 | 採購清單 | [BOM.md](BOM.md) | 每項都有賣場連結與單價 |
-| 韌體 | [`firmware/`](firmware/) | ESP32 A2DP＋頻譜＋歌詞＋旋鈕 |
+| 韌體 | [`firmware/`](firmware/) | ESP32 A2DP＋頻譜＋歌詞＋旋鈕（已通過編譯：1.22 MB / 93%） |
 
 ## 尺寸核對（自動計算，不是目測）
 
@@ -65,6 +65,7 @@ MAX98357A      22 × 16 × 5   平放              ✓
 
 ```bash
 cd minimac-speaker
+./tools/check.sh                          # 一鍵：建模→尺寸核對→STL 檢查→韌體編譯
 .venv/bin/python cad/build_minimac.py     # 出 STEP／STL／dims.json
 .venv/bin/python cad/render.py            # 出四視圖 PNG
 python3 tools/gen_bom.py                  # 重算 BOM 與售價
