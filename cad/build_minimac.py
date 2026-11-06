@@ -136,14 +136,16 @@ knob = Pos(*KNOB_POS) * Rot(90, 0, 0) * knob
 knob -= Cylinder(3.1, 12.0, align=(C, C, MIN))
 knob -= Pos(0, -9.0, 3.0) * Box(6.0, 4.0, 10.0, align=(C, C, MIN))  # D 軸平面
 
-# ---------------- 被動輻射器壓框 ----------------
-clamp = Pos(PR_CX, 0, 0) * Box(PR_W + 14, PR_H + 14, 4.0, align=(C, C, MIN))
-clamp -= Pos(PR_CX, 0, -1) * Box(PR_W + 2, PR_H + 2, 6.0, align=(C, C, MIN))
+# ---------------- 被動輻射器壓框（貼背板內側） ----------------
+PR_Z = (WIN_Z0 + WIN_H + 20) / 2          # 與背板開窗同高
+clamp_local = Box(PR_W + 14, PR_H + 14, 4.0, align=(C, C, MIN))
+clamp_local -= Pos(0, 0, -1) * Box(PR_W + 2, PR_H + 2, 6.0, align=(C, C, MIN))
 for sx in (-1, 1):
     for sy in (-1, 1):
-        clamp -= Pos(PR_CX + sx * (PR_W / 2 + 4), sy * (PR_H / 2 + 4), -1) * Cylinder(
+        clamp_local -= Pos(sx * (PR_W / 2 + 4), sy * (PR_H / 2 + 4), -1) * Cylinder(
             1.1, 8.0, align=(C, C, MIN)
         )
+clamp = Pos(PR_CX, Y_BACK - WALL, PR_Z) * Rot(90, 0, 0) * clamp_local
 
 # ---------------- 尺寸核對（AABB） ----------------
 def aabb(name, x0, x1, y0, y1, z0, z1, note=""):
@@ -161,7 +163,7 @@ parts = [
     aabb("MAX98357A x2", -45, -22, 14, 30, WALL + DRV_H + 2, WALL + DRV_H + 7, "平放"),
     aabb("18650 電池座", 24.0, 45.5, 30, 50.5, WALL + DRV_H + 2, WALL + DRV_H + 2 + 77, "立放背右"),
     aabb("被動輻射器", PR_CX - PR_W / 2, PR_CX + PR_W / 2, Y_BACK - WALL - 14, Y_BACK - WALL,
-         (WIN_Z0 + WIN_H + 20) / 2 - PR_H / 2, (WIN_Z0 + WIN_H + 20) / 2 + PR_H / 2, "背板內側"),
+         PR_Z - PR_H / 2, PR_Z + PR_H / 2, "背板內側，壓框貼內壁"),
 ]
 
 def overlap(a, b):
@@ -211,7 +213,7 @@ solids = dict(body=body, faceplate=fp, knob=knob, pr_clamp=clamp)
 for name, s in solids.items():
     export_step(s, os.path.join(out, f"{name}.step"))
     export_stl(s, os.path.join(out, f"{name}.stl"), tolerance=0.15)
-export_step(Compound(children=[body, fp, knob, Pos(PR_CX, 0, 0) * clamp]),
+export_step(Compound(children=[body, fp, knob, clamp]),
             os.path.join(out, "assembly.step"))
 with open(os.path.join(out, "dims.json"), "w") as f:
     json.dump(dims, f, ensure_ascii=False, indent=1)

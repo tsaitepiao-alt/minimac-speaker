@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980" font-family="PingFang TC, Noto Sans TC, sans-serif">
+<rect width="1500" height="980" fill="#0f1720"/>
+<text x="40" y="52" text-anchor="start" fill="#e8eef6" font-size="30" font-weight="700">miniMac Speaker MM96 ─ 電路接線圖</text>
+<text x="40" y="82" text-anchor="start" fill="#8fa3b8" font-size="15" font-weight="400">ESP32 經典藍牙（A2DP）接收 → I2S 數位音訊 → 3W 擴大 → 雙單體＋被動輻射器</text>
+<text x="40" y="130" text-anchor="start" fill="#ff5252" font-size="16" font-weight="700">① 電源鏈</text>
+<rect x="40" y="150" width="190" height="96" rx="10" fill="#241d1d" stroke="#7a4b4b" stroke-width="2"/>
+<text x="135.0" y="176" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">18650 鋰電池</text>
+<text x="135.0" y="198" text-anchor="middle" fill="#8fa3b8" font-size="13">3.7V 3000mAh</text>
+<text x="135.0" y="216" text-anchor="middle" fill="#8fa3b8" font-size="13">含保護板</text>
+<rect x="290" y="150" width="210" height="130" rx="10" fill="#241d1d" stroke="#7a4b4b" stroke-width="2"/>
+<text x="395.0" y="176" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">IP5306 模組</text>
+<text x="395.0" y="198" text-anchor="middle" fill="#8fa3b8" font-size="13">USB-C 充電 5V/2A</text>
+<text x="395.0" y="216" text-anchor="middle" fill="#8fa3b8" font-size="13">升壓輸出 5V 2.4A</text>
+<text x="395.0" y="234" text-anchor="middle" fill="#8fa3b8" font-size="13">4 段 LED 電量</text>
+<polyline points="230,198 290,198" fill="none" stroke="#ff5252" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="260" y="190" text-anchor="middle" fill="#ff5252" font-size="12" font-weight="400">B+ B−</text>
+<rect x="560" y="150" width="300" height="300" rx="10" fill="#1b2735" stroke="#3d5872" stroke-width="2"/>
+<text x="710.0" y="176" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">ESP32 DevKitC</text>
+<text x="710.0" y="198" text-anchor="middle" fill="#8fa3b8" font-size="13">經典 ESP32-WROOM-32</text>
+<text x="710.0" y="216" text-anchor="middle" fill="#8fa3b8" font-size="13">5V 進 → 板載 LDO 3.3V</text>
+<text x="568" y="241" text-anchor="start" fill="#ff5252" font-size="13">5V / VIN</text>
+<text x="568" y="267" text-anchor="start" fill="#b0bec5" font-size="13">GND</text>
+<text x="568" y="293" text-anchor="start" fill="#ffb74d" font-size="13">3V3</text>
+<polyline points="500,196 530,196 530,236 560,236" fill="none" stroke="#ff5252" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="500,250 530,250 530,262 560,262" fill="none" stroke="#b0bec5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="520,288 560,288" fill="none" stroke="#ffb74d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="40" y="300" width="190" height="70" rx="10" fill="#241d1d" stroke="#7a4b4b" stroke-width="2"/>
+<text x="135.0" y="326" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">電源開關</text>
+<text x="135.0" y="348" text-anchor="middle" fill="#8fa3b8" font-size="13">SS-12D00</text>
+<polyline points="135,246 135,300" fill="none" stroke="#ff5252" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="150" y="285" text-anchor="start" fill="#ff5252" font-size="12" font-weight="400">串在 5V 主線</text>
+<text x="900" y="130" text-anchor="start" fill="#64b5f6" font-size="16" font-weight="700">② 音訊鏈（I2S 數位）</text>
+<rect x="900" y="150" width="250" height="200" rx="10" fill="#1b2735" stroke="#3d5872" stroke-width="2"/>
+<text x="1025.0" y="176" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">MAX98357A</text>
+<text x="1025.0" y="198" text-anchor="middle" fill="#8fa3b8" font-size="13">I2S DAC＋D 類擴大</text>
+<text x="1025.0" y="216" text-anchor="middle" fill="#8fa3b8" font-size="13">5V / 4Ω→3.2W</text>
+<text x="1025.0" y="234" text-anchor="middle" fill="#8fa3b8" font-size="13">SD 腳接 3.3V＝開啟</text>
+<text x="908" y="255" text-anchor="start" fill="#64b5f6" font-size="13">BCLK ← GPIO26</text>
+<text x="908" y="277" text-anchor="start" fill="#64b5f6" font-size="13">LRC  ← GPIO25</text>
+<text x="908" y="299" text-anchor="start" fill="#64b5f6" font-size="13">DIN  ← GPIO22</text>
+<polyline points="860,256 880,256 880,250 900,250" fill="none" stroke="#64b5f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="860,272 890,272 890,272 900,272" fill="none" stroke="#64b5f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="860,288 900,288" fill="none" stroke="#64b5f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="860,236 870,236 870,380 1150,380 1150,210" fill="none" stroke="#ff5252" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="1210" y="150" width="250" height="120" rx="10" fill="#1a2420" stroke="#3f6b52" stroke-width="2"/>
+<text x="1335.0" y="176" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">單體 左</text>
+<text x="1335.0" y="198" text-anchor="middle" fill="#8fa3b8" font-size="13">40mm 4Ω 3W</text>
+<rect x="1210" y="300" width="250" height="120" rx="10" fill="#1a2420" stroke="#3f6b52" stroke-width="2"/>
+<text x="1335.0" y="326" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">單體 右</text>
+<text x="1335.0" y="348" text-anchor="middle" fill="#8fa3b8" font-size="13">40mm 4Ω 3W</text>
+<text x="1335.0" y="366" text-anchor="middle" fill="#8fa3b8" font-size="13">兩顆串聯＝8Ω</text>
+<polyline points="1150,210 1180,210 1180,190 1210,190" fill="none" stroke="#64b5f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1210,250 1190,250 1190,360 1210,360" fill="none" stroke="#64b5f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1200" y="300" text-anchor="end" fill="#64b5f6" font-size="13" font-weight="400">串聯</text>
+<polyline points="1460,360 1480,360 1480,210 1150,210" fill="none" stroke="#64b5f6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1240" y="440" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">被動輻射器 50×70mm 裝在背板（不是電子件）</text>
+<text x="40" y="470" text-anchor="start" fill="#81c784" font-size="16" font-weight="700">③ 顯示與控制</text>
+<rect x="40" y="490" width="270" height="240" rx="10" fill="#1b2735" stroke="#3d5872" stroke-width="2"/>
+<text x="175.0" y="516" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">2.8 吋 ST7789</text>
+<text x="175.0" y="538" text-anchor="middle" fill="#8fa3b8" font-size="13">240×320 SPI IPS</text>
+<text x="175.0" y="556" text-anchor="middle" fill="#8fa3b8" font-size="13">橫放 = 320×240</text>
+<text x="330" y="546" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">SCLK ← GPIO18</text>
+<text x="330" y="572" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">MOSI ← GPIO23</text>
+<text x="330" y="598" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">CS   ← GPIO5</text>
+<text x="330" y="624" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">DC   ← GPIO2</text>
+<text x="330" y="650" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">RST  ← GPIO4</text>
+<text x="330" y="676" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">BL   ← GPIO15</text>
+<polyline points="310,600 470,600 470,470 700,470 700,452" fill="none" stroke="#81c784" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="478" y="590" text-anchor="start" fill="#81c784" font-size="13" font-weight="400">SPI 六線匯流排</text>
+<rect x="900" y="490" width="250" height="150" rx="10" fill="#241f2b" stroke="#6b4b8a" stroke-width="2"/>
+<text x="1025.0" y="516" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">EC11 旋轉編碼器</text>
+<text x="1025.0" y="538" text-anchor="middle" fill="#8fa3b8" font-size="13">A → GPIO32</text>
+<text x="1025.0" y="556" text-anchor="middle" fill="#8fa3b8" font-size="13">B → GPIO33</text>
+<text x="1025.0" y="574" text-anchor="middle" fill="#8fa3b8" font-size="13">SW → GPIO13</text>
+<polyline points="900,565 830,565 830,470 760,470 760,452" fill="none" stroke="#ba68c8" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="838" y="555" text-anchor="start" fill="#ba68c8" font-size="13" font-weight="400">3 條控制線</text>
+<rect x="1210" y="490" width="250" height="150" rx="10" fill="#1b2735" stroke="#3d5872" stroke-width="2"/>
+<text x="1335.0" y="516" text-anchor="middle" fill="#e8eef6" font-size="19" font-weight="700">操作對應</text>
+<text x="1335.0" y="538" text-anchor="middle" fill="#8fa3b8" font-size="13">轉 = 音量</text>
+<text x="1335.0" y="556" text-anchor="middle" fill="#8fa3b8" font-size="13">按一下 = 播放／暫停</text>
+<text x="1335.0" y="574" text-anchor="middle" fill="#8fa3b8" font-size="13">長按 = 換顯示模式</text>
+<polyline points="560,236 520,236" fill="none" stroke="#ff5252" stroke-width="2" stroke-dasharray="6,5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="40" y="660" width="1420" height="270" rx="10" fill="#141d28" stroke="#2c3f52"/>
+<text x="60" y="690" text-anchor="start" fill="#e8eef6" font-size="15" font-weight="700">訊號類別</text>
+<line x1="60" y1="717" x2="100" y2="717" stroke="#ff5252" stroke-width="4"/>
+<text x="110" y="722" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">5V 電源（5V）</text>
+<line x1="360" y1="717" x2="400" y2="717" stroke="#ffb74d" stroke-width="4"/>
+<text x="410" y="722" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">3.3V 電源（3V3）</text>
+<line x1="660" y1="717" x2="700" y2="717" stroke="#b0bec5" stroke-width="4"/>
+<text x="710" y="722" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">接地（GND）</text>
+<line x1="60" y1="745" x2="100" y2="745" stroke="#64b5f6" stroke-width="4"/>
+<text x="110" y="750" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">I2S 音訊（I2S）</text>
+<line x1="360" y1="745" x2="400" y2="745" stroke="#81c784" stroke-width="4"/>
+<text x="410" y="750" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">SPI 顯示（SPI）</text>
+<line x1="660" y1="745" x2="700" y2="745" stroke="#ba68c8" stroke-width="4"/>
+<text x="710" y="750" text-anchor="start" fill="#e8eef6" font-size="13" font-weight="400">控制訊號（CTRL）</text>
+<text x="60" y="786" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">為什麼這樣接：①手機用藍牙經典協定（A2DP）推音樂，ESP32 解碼後用 I2S 數位訊號丟給 MAX98357A，少了類比走線就不會有電流聲。</text>
+<text x="60" y="812" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">② MAX98357A 的 SD 腳一定要接 3.3V 才會工作，沒接會完全沒聲音（這是新手最常卡住的地方）。</text>
+<text x="60" y="838" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">③ 兩顆 4Ω 單體串聯成 8Ω，一顆擴大器就能推兩顆；並聯成 2Ω 聲音更大但超過晶片負載，會燒。</text>
+<text x="60" y="864" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">④ IP5306 可以邊充邊放；電池掉到 3.4V 以下自動斷電保護電芯。</text>
+<text x="60" y="890" text-anchor="start" fill="#8fa3b8" font-size="13" font-weight="400">⑤ 5V 只給 ESP32 的 5V 腳（板載 LDO 轉 3.3V）與 MAX98357A 的 VIN；螢幕與編碼器一律吃 3.3V。</text>
+</svg>
