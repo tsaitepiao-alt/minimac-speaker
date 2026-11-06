@@ -80,7 +80,7 @@ for i, dz in enumerate((112.0, 116.0, 120.0)):
     body -= Pos(0, Y_BACK - WALL / 2, dz) * Box(46, WALL + 2, 2.0, align=(C, C, C))
 
 # 面版面鎖附凸柱（M2 自攻）＋ 螢幕承靠柱
-boss_pts = [(-41.6, 8.0), (41.6, 8.0), (-41.6, 124.0), (41.6, 124.0)]
+boss_pts = [(-43.0, 8.0), (43.0, 8.0), (-43.0, 124.0), (43.0, 124.0)]   # ±43：壓進側壁 1.4mm，避免相切造成非封閉網格
 for bx, bz in boss_pts:
     body += Pos(bx, Y_FRONT + WALL, bz) * Rot(-90, 0, 0) * Cylinder(
         4.0, 10.0, align=(C, C, MIN)
@@ -88,11 +88,7 @@ for bx, bz in boss_pts:
     body -= Pos(bx, Y_FRONT + WALL, bz) * Rot(-90, 0, 0) * Cylinder(
         0.85, 14.0, align=(C, C, MIN)
     )
-# 螢幕下托（左右各一，高 6，深 6）
-for sx in (-1, 1):
-    body += Pos(sx * 30, Y_FRONT + WALL + 3.0, WIN_Z0 - 3.0) * Box(
-        8.0, 6.0, 3.0, align=(C, C, MIN)
-    )
+# 螢幕固定凸柱改做在面版背面（見下方），本體不加浮空零件
 
 # ---------------- 面版 ----------------
 fp = Pos(0, Y_FRONT - FRONT_T, 0) * Box(W, FRONT_T, H, align=(C, MIN, MIN))
@@ -122,6 +118,14 @@ fp -= cut_hole(3.0, 40.0, -30.0)
 # 鎖附孔
 for bx, bz in boss_pts:
     fp -= cut_hole(2.4, bz, bx)
+# 螢幕固定柱（背面，Ø5×6，位置在窗戶外緣外側，不擋畫面）
+for sx in (-1, 1):
+    fp += Pos(sx * 35.0, -60.0, WIN_Z0 - 2.0) * Rot(-90, 0, 0) * Cylinder(
+        2.5, 6.0, align=(C, C, MIN)
+    )
+    fp -= Pos(sx * 35.0, -60.0, WIN_Z0 - 2.0) * Rot(-90, 0, 0) * Cylinder(
+        0.85, 10.0, align=(C, C, MIN)
+    )
 
 # ---------------- 旋鈕（EC11） ----------------
 pts = []
@@ -209,6 +213,9 @@ dims = dict(
 # ---------------- 匯出 ----------------
 out = os.path.join(os.path.dirname(__file__), "export")
 os.makedirs(out, exist_ok=True)
+body = body.clean()
+fp = fp.clean()
+clamp = clamp.clean()
 solids = dict(body=body, faceplate=fp, knob=knob, pr_clamp=clamp)
 for name, s in solids.items():
     export_step(s, os.path.join(out, f"{name}.step"))
