@@ -1,0 +1,36 @@
+{
+ "variant": "minito-v3",
+ "outer": {
+  "W": 82.0,
+  "D": 61.0,
+  "H": 103.0
+ },
+ "depth_ratio": 0.74,
+ "wall": 2.6,
+ "tilt_deg": 8.0,
+ "tilt_mm": 14.5,
+ "screen": {
+  "w": 49.0,
+  "h": 37.0,
+  "center_from_bottom": 60.0,
+  "width_ratio": 0.6,
+  "recess": 3.0,
+  "lip": 1.4,
+  "panel": "2.8吋 320x240（有效 57.6×43.2）"
+ },
+ "keys": {
+  "size": 10.0,
+  "gap": 1.6,
+  "layout": "2x2 左下",
+  "knob_d": 12.0
+ },
+ "feet": 4.0,
+ "parts": [
+  "front_shell",
+  "back_cover",
+  "orange_key",
+  "keycaps"
+ ],
+ "measured_from": "實拍圖目視比例（front 角度）",
+ "assumed": "深度、壁厚、按鍵行程、內部結構"
+}
