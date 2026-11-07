@@ -46,7 +46,7 @@ A(f'<text x="{X(KNOB_CX):.0f}" y="{Y(KNOB_CV)+4:.0f}" font-size="11" fill="#fff"
 # 字樣：品牌條 + 功能字
 # 實拍確認：MINITOO 在螢幕「上方」邊框，鍵盤座再一行小字
 A(f'<text x="{X(0):.0f}" y="{Y(SCR_C+SCR_H/2+5.5):.0f}" font-size="{2.8*S*0.42:.0f}" font-weight="700" letter-spacing="2.4" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>')
-A(f'<text x="{X(0):.0f}" y="{Y(37.0):.0f}" font-size="{1.6*S*0.42:.0f}" letter-spacing="1" fill="#555" text-anchor="middle">RETRO PC-STYLE BLUETOOTH SPEAKER</text>')
+A(f'<text x="{X(0):.0f}" y="{Y(3.2):.0f}" font-size="{1.5*S*0.42:.0f}" letter-spacing="0.8" fill="#555" text-anchor="middle">RETRO PC-STYLE BLUETOOTH SPEAKER</text>')
 legend = [
     (-14.8, 12.0, "電源圖示"),
     (-3.2, 27.5, "MODE"),
@@ -59,7 +59,7 @@ for u, v, txt in legend:
 # 右側說明欄
 cx = MARGIN + W * S + 24
 rows = [
-    ("品牌條", "寬 ≤ 26mm，字高 2.6mm，置中；距離螢幕窗下緣 3.5mm"),
+    ("品牌條", "MINITOO 字高 2.6mm 置中於螢幕上方邊框；下方底座下緣再印 1.5mm 英文副標"),
     ("功能字", "字高 2.2mm，深灰 #555；四鍵各一組（電源圖示／MODE／播放鍵／±）"),
     ("製程", "絲印 1 色（深灰）或 UV 印刷；亦可雷雕 0.15 深（不需油墨）"),
     ("公差", "字樣位置 ±0.2mm；與邊緣距離 ≥ 2.5mm"),
