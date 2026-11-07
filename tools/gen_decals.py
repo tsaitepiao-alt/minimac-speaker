@@ -12,7 +12,7 @@ KEY, GAP, KEY_CX, KEY_CV = 10.0, 1.6, -9.0, 21.0
 KNOB_D, KNOB_CX, KNOB_CV = 12.0, 19.0, 30.0
 MARGIN = 32
 
-Wc = int(W * S + MARGIN * 2 + 400)
+Wc = int(W * S + MARGIN * 2 + 560)
 Hc = int(FACE_L * S + MARGIN * 2 + 90)
 
 def X(u):  # u(mm, 以中心為 0) → px
@@ -40,11 +40,13 @@ for i in (-1, 1):
         cv = KEY_CV + j * (KEY + GAP) / 2
         A(f'<rect x="{X(cx-KEY/2):.0f}" y="{Y(cv+KEY/2):.0f}" width="{KEY*S:.0f}" height="{KEY*S:.0f}" rx="{0.7*S:.0f}" fill="#e8e5dd" stroke="#333"/>')
 # 旋鈕
-A(f'<circle cx="{X(KNOB_CX):.0f}" cy="{Y(KNOB_CV):.0f}" r="{KNOB_D/2*S:.0f}" fill="#e0661f"/>')
+A(f'<circle cx="{X(KNOB_CX):.0f}" cy="{Y(KNOB_CV):.0f}" r="{KNOB_D/2*S:.0f}" fill="#d93a12"/>')
 A(f'<text x="{X(KNOB_CX):.0f}" y="{Y(KNOB_CV)+4:.0f}" font-size="11" fill="#fff" text-anchor="middle">Ø12</text>')
 
 # 字樣：品牌條 + 功能字
-A(f'<text x="{X(0):.0f}" y="{Y(37.5):.0f}" font-size="{2.6*S*0.42:.0f}" font-weight="700" letter-spacing="2" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>')
+# 實拍確認：MINITOO 在螢幕「上方」邊框，鍵盤座再一行小字
+A(f'<text x="{X(0):.0f}" y="{Y(SCR_C+SCR_H/2+5.5):.0f}" font-size="{2.8*S*0.42:.0f}" font-weight="700" letter-spacing="2.4" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>')
+A(f'<text x="{X(0):.0f}" y="{Y(37.0):.0f}" font-size="{1.6*S*0.42:.0f}" letter-spacing="1" fill="#555" text-anchor="middle">RETRO PC-STYLE BLUETOOTH SPEAKER</text>')
 legend = [
     (-14.8, 12.0, "電源圖示"),
     (-3.2, 27.5, "MODE"),
@@ -61,7 +63,9 @@ rows = [
     ("功能字", "字高 2.2mm，深灰 #555；四鍵各一組（電源圖示／MODE／播放鍵／±）"),
     ("製程", "絲印 1 色（深灰）或 UV 印刷；亦可雷雕 0.15 深（不需油墨）"),
     ("公差", "字樣位置 ±0.2mm；與邊緣距離 ≥ 2.5mm"),
-    ("注意", "本稿依照片推定；實機到位後以卡尺校核鍵距與字高再定稿"),
+    ("實拍1", "MINITOO 在螢幕上方邊框；鍵盤座印 RETRO PC-STYLE …；旋鈕紅色"),
+    ("實拍2", "USB-C＋卡片槽在正面底部；−SUBWOOFER− 在頂面；底部 CE/FCC"),
+    ("注意", "本稿依照片推定；實機到位後以卡尺校核再定稿"),
 ]
 y = MARGIN + 70
 for k, v in rows:

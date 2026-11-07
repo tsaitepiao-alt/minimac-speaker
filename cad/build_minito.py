@@ -73,13 +73,18 @@ knob_c = (19.0, 30.0)   # 實拍：橘鈕在控制面板右上
 shell -= front_plane * (Pos(knob_c[0], knob_c[1], 0) * Cylinder(KNOB_D / 2 + 0.9, 4.0, align=(C, C, MIN)))
 shell -= front_plane * (Pos(knob_c[0], knob_c[1], 0) * Rot(90, 0, 0) * Cylinder(KNOB_D / 2, 3.0))
 
+# ---- 正面底座：USB-C 與卡片槽（實拍確認在正面底部）----
+shell -= front_plane * (Pos(15.0, 7.5, 0) * Box(9.4, 3.6, 14.0, align=(C, C, C)))
+shell -= front_plane * (Pos(-2.0, 7.5, 0) * Box(18.0, 2.6, 14.0, align=(C, C, C)))
+
 # ---- 頂部百葉出音孔（3 條）----
 for k in range(-4, 5):
     shell -= Pos(0, k * 6.5, H - 1.0) * Box(W - 28, 2.6, 3.0, align=(C, C, MIN))
 
+# ---- 頂面 −SUBWOOFER− 橢圓鍵 ----
+shell -= Pos(0, 16.0, H - 1.5) * Box(21.0, 9.5, 4.0, align=(C, C, MIN))
+
 # ---- 背面 I/O 與散熱 ----
-shell -= Pos(-22.0, D / 2 - WALL, 14.0) * Box(9.4, WALL + 3, 3.6, align=(C, C, C))
-shell -= Pos(20.0, D / 2 - WALL, 14.0) * Box(13.5, WALL + 3, 7.0, align=(C, C, C))
 for k in (-1, 0, 1):
     shell -= Pos(0, D / 2 - WALL, 84.0 + k * 7.0) * Box(40.0, WALL + 3, 2.2, align=(C, C, C))
 

@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="792" height="570" viewBox="0 0 792 570" font-family="Hiragino Sans GB, PingFang TC, sans-serif">
-<rect width="792" height="570" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="952" height="570" viewBox="0 0 952 570" font-family="Hiragino Sans GB, PingFang TC, sans-serif">
+<rect width="952" height="570" fill="#ffffff"/>
 <text x="32" y="34" font-size="20" font-weight="700" fill="#111">MT-V3 印刷稿（絲印／UV 印刷／雷雕）— 1:1 版面</text>
 <text x="32" y="56" font-size="12" fill="#666">單位 mm　前面板展開圖（含 8° 前傾補正，展開長 104.0）　* 位置需以實機校核後定稿</text>
 <rect x="32" y="102" width="328" height="416" rx="32" fill="#faf8f3" stroke="#111" stroke-width="1.5"/>
@@ -9,9 +9,10 @@
 <rect x="117" y="391" width="40" height="40" rx="3" fill="#e8e5dd" stroke="#333"/>
 <rect x="163" y="437" width="40" height="40" rx="3" fill="#e8e5dd" stroke="#333"/>
 <rect x="163" y="391" width="40" height="40" rx="3" fill="#e8e5dd" stroke="#333"/>
-<circle cx="272" cy="398" r="24" fill="#e0661f"/>
+<circle cx="272" cy="398" r="24" fill="#d93a12"/>
 <text x="272" y="402" font-size="11" fill="#fff" text-anchor="middle">Ø12</text>
-<text x="196" y="368" font-size="4" font-weight="700" letter-spacing="2" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>
+<text x="196" y="182" font-size="5" font-weight="700" letter-spacing="2.4" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>
+<text x="196" y="370" font-size="3" letter-spacing="1" fill="#555" text-anchor="middle">RETRO PC-STYLE BLUETOOTH SPEAKER</text>
 <text x="137" y="470" font-size="4" fill="#555" text-anchor="middle">電源圖示</text>
 <text x="183" y="408" font-size="4" fill="#555" text-anchor="middle">MODE</text>
 <text x="183" y="461" font-size="4" fill="#555" text-anchor="middle">▶︎ ‖</text>
@@ -24,8 +25,12 @@
 <text x="384.0" y="224" font-size="11" fill="#555">絲印 1 色（深灰）或 UV 印刷；亦可雷雕 0.15 深（不需油墨）</text>
 <text x="384.0" y="258" font-size="13" font-weight="700" fill="#111">公差</text>
 <text x="384.0" y="276" font-size="11" fill="#555">字樣位置 ±0.2mm；與邊緣距離 ≥ 2.5mm</text>
-<text x="384.0" y="310" font-size="13" font-weight="700" fill="#111">注意</text>
-<text x="384.0" y="328" font-size="11" fill="#555">本稿依照片推定；實機到位後以卡尺校核鍵距與字高再定稿</text>
+<text x="384.0" y="310" font-size="13" font-weight="700" fill="#111">實拍1</text>
+<text x="384.0" y="328" font-size="11" fill="#555">MINITOO 在螢幕上方邊框；鍵盤座印 RETRO PC-STYLE …；旋鈕紅色</text>
+<text x="384.0" y="362" font-size="13" font-weight="700" fill="#111">實拍2</text>
+<text x="384.0" y="380" font-size="11" fill="#555">USB-C＋卡片槽在正面底部；−SUBWOOFER− 在頂面；底部 CE/FCC</text>
+<text x="384.0" y="414" font-size="13" font-weight="700" fill="#111">注意</text>
+<text x="384.0" y="432" font-size="11" fill="#555">本稿依照片推定；實機到位後以卡尺校核再定稿</text>
 <line x1="32" y1="536" x2="360" y2="536" stroke="#c62828"/>
 <text x="196" y="532" font-size="12" fill="#c62828" text-anchor="middle">82</text>
 </svg>
