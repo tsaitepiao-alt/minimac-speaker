@@ -46,6 +46,7 @@
   <div class="row"><span>內部淨空間</span><b id="d-in">—</b></div>
   <div class="row"><span>螢幕窗</span><b id="d-win">—</b></div>
   <div class="row"><span>單體孔</span><b id="d-drv">—</b></div>
+  <div class="row"><span>額頭／下巴</span><b id="d-fc">—</b></div>
   <div class="row"><span>列印件</span><b>2 件主殼＋旋鈕＋壓框</b></div>
 </div>
 
@@ -130,9 +131,9 @@ sx.fillStyle='#e8eef6'; sx.fillText('close my eyes…', 14, 206);
 for(let i=0;i<16;i++){ const h=10+Math.abs(Math.sin(i*0.7))*46;
   sx.fillStyle = i%3? '#4ade80':'#ffb74d'; sx.fillRect(14+i*18, 168-h, 12, h); }
 const tex = new THREE.CanvasTexture(sc);
-const screen = new THREE.Mesh(new THREE.PlaneGeometry(60,45),
+const screen = new THREE.Mesh(new THREE.PlaneGeometry(62,47),
   new THREE.MeshBasicMaterial({map:tex}));
-screen.position.set(0, -59.2, 95.5); screen.rotation.y = Math.PI;
+screen.position.set(0, -59.25, 67); screen.rotation.y = Math.PI;
 group.add(screen);
 
 const loader = new THREE.STLLoader();
@@ -158,6 +159,7 @@ function fillDims(d){
   document.getElementById('d-in').textContent = `${d.inner.W} × ${d.inner.D} × ${d.inner.H} mm`;
   document.getElementById('d-win').textContent = `${d.screen.window[0]} × ${d.screen.window[1]} mm（模組 ${d.screen.module[0]}×${d.screen.module[1]}）`;
   document.getElementById('d-drv').textContent = `Ø${d.driver.d} × 2，離桌 ${d.foot_h} mm`;
+  document.getElementById('d-fc').textContent = `${d.forehead} / ${d.chin} mm`;
   const t = document.getElementById('tbl');
   t.innerHTML = '<tr><td>零件</td><td>放置位置</td><td>結果</td></tr>' + d.parts.map(p=>{
     const bad = p.issues.length>0;
