@@ -81,8 +81,9 @@ shell -= front_plane * (Pos(-2.0, 7.5, 0) * Box(18.0, 2.6, 14.0, align=(C, C, C)
 for k in range(-4, 5):
     shell -= Pos(0, k * 6.5, H - 1.0) * Box(W - 28, 2.6, 3.0, align=(C, C, MIN))
 
-# ---- 頂面 −SUBWOOFER− 橢圓鍵 ----
-shell -= Pos(0, 16.0, H - 1.5) * Box(21.0, 9.5, 4.0, align=(C, C, MIN))
+# ---- 背面 −SUBWOOFER− 被動輻射器橢圓開口（實拍確認在背面/上段）----
+shell -= Pos(0, D / 2 - WALL / 2, 46.0) * Rot(90, 0, 0) * Cylinder(13.0, 8.0, align=(C, C, C))
+shell -= Pos(0, D / 2 - WALL / 2, 46.0) * Box(20.0, 8.0, 8.0, align=(C, C, C))
 
 # ---- 背面 I/O 與散熱 ----
 for k in (-1, 0, 1):
@@ -93,6 +94,8 @@ for sx in (-1, 1):
     for sy in (-1, 1):
         shell -= Pos(sx * (W / 2 - 14), sy * (D / 2 - 14), 0) * Cylinder(5.2, 2.0, align=(C, C, MIN))
 
+# ---- 底部法規標示淺凹（CE/FCC 印刷區）----
+shell -= Pos(0, 6.0, 0) * Box(34.0, 14.0, 0.6, align=(C, C, MIN))
 shell = shell.clean()
 
 # ---- 後蓋（獨立件，印後鎖上）----
@@ -100,6 +103,8 @@ back = Box(W - 1.0, WALL, H - 1.0, align=(C, C, MIN))
 back = fillet(back.edges().filter_by(Axis.Z), 1.2)
 for k in (-1, 0, 1):
     back -= Pos(0, 0, 74.0 + k * 6.0) * Box(28.0, WALL + 3, 1.6, align=(C, C, MIN))
+back -= Pos(0, 0, 46.0) * Rot(90, 0, 0) * Cylinder(12.5, 8.0, align=(C, C, C))
+back -= Pos(0, 0, 46.0) * Box(20.0, 8.0, 8.0, align=(C, C, C))
 back = (Pos(0, D / 2 - WALL / 2, 0) * back).clean()
 
 # ---- 四顆灰鍵帽（獨立件，鍵盤實體）----
