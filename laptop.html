@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiniBook MM96-L ─ 迷你筆電變體 3D 檢視</title>
+<style>
+  :root{--bg:#0d1218;--panel:#141d27;--line:#26374a;--fg:#e8eef6;--dim:#8fa3b8;--ok:#4ade80;--hi:#ffb74d}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:"PingFang TC","Noto Sans TC",system-ui,sans-serif;overflow:hidden}
+  #c{position:fixed;inset:0;display:block}
+  .panel{position:fixed;background:rgba(20,29,39,.92);border:1px solid var(--line);border-radius:12px;backdrop-filter:blur(6px)}
+  #hud{left:16px;top:16px;padding:14px 16px;width:330px}
+  #hud h1{margin:0 0 2px;font-size:19px}
+  #hud .sub{color:var(--dim);font-size:12px;margin-bottom:10px}
+  .row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px dashed #1d2a38}
+  #ctrl{left:16px;bottom:16px;padding:12px 16px;width:330px}
+  #ctrl label{font-size:13px;color:var(--dim);display:block;margin-bottom:6px}
+  input[type=range]{width:100%;accent-color:var(--hi)}
+  .btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  button{background:#1d2a38;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer}
+  button:hover{border-color:var(--hi);color:var(--hi)}
+  #check{right:16px;top:16px;padding:14px 16px;width:350px;max-height:72vh;overflow:auto}
+  #check h2{margin:0 0 8px;font-size:15px;color:var(--hi)}
+  #check table{width:100%;border-collapse:collapse;font-size:12px}
+  #check td{padding:3px 4px;border-bottom:1px solid #1d2a38;color:var(--dim)}
+  #check td:last-child{text-align:right;color:var(--fg)}
+  .ok{color:var(--ok)!important}.bad{color:#f87171!important}
+  #loading{position:fixed;inset:0;display:grid;place-items:center;font-size:14px;color:var(--dim);background:var(--bg);z-index:9}
+  @media (max-width:1000px){#check{display:none}#hud,#ctrl{width:auto;max-width:calc(100vw - 32px)}}
+</style>
+</head>
+<body>
+<div id="loading">載入 3D 模型…</div>
+<canvas id="c"></canvas>
+
+<div class="panel" id="hud">
+  <h1>MiniBook MM96-L</h1>
+  <div class="sub">迷你筆電變體 · 同電路換殼 · 3D 機構</div>
+  <div class="row"><span>合起尺寸</span><b id="d-closed">—</b></div>
+  <div class="row"><span>底殼</span><b id="d-base">—</b></div>
+  <div class="row"><span>上蓋</span><b id="d-lid">—</b></div>
+  <div class="row"><span>螢幕窗</span><b id="d-win">—</b></div>
+  <div class="row"><span>鉸鏈</span><b id="d-hinge">—</b></div>
+  <div class="row"><span>列印件</span><b>底殼＋底板＋上蓋＋按鈕</b></div>
+</div>
+
+<div class="panel" id="check">
+  <h2>尺寸核對（自動計算）</h2>
+  <table id="tbl"></table>
+  <p id="verdict" style="font-size:12px;margin:8px 0 0"></p>
+</div>
+
+<div class="panel" id="ctrl">
+  <label>開蓋角度 <span id="deg" style="color:var(--hi)">110°</span></label>
+  <input type="range" id="open" min="0" max="130" value="110">
+  <div class="btns">
+    <button onclick="setView('iso')">斜 3/4</button>
+    <button onclick="setView('front')">正面</button>
+    <button onclick="setView('side')">側面</button>
+    <button onclick="setView('top')">俯視</button>
+    <button id="spin">自動旋轉：關</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script>
+const BW=150, BD=110, BH=28, LD=100, LT=9, HY=51, HZ=28;
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.shadowMap.enabled=true;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x0d1218);
+const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,1,3000);
+camera.position.set(170,120,230);
+const controls=new THREE.OrbitControls(camera,canvas);
+controls.target.set(0,40,0); controls.enableDamping=true; controls.dampingFactor=.08;
+
+scene.add(new THREE.HemisphereLight(0xdfe9f5,0x1a2430,0.85));
+const key=new THREE.DirectionalLight(0xffffff,1.0); key.position.set(160,320,220);
+key.castShadow=true; key.shadow.mapSize.set(1024,1024);
+key.shadow.camera.left=-200;key.shadow.camera.right=200;key.shadow.camera.top=200;key.shadow.camera.bottom=-200;
+scene.add(key);
+const fill=new THREE.DirectionalLight(0x9fc4ff,0.4); fill.position.set(-240,120,-160); scene.add(fill);
+
+// 把 STL 的 Z-up 轉成 three.js Y-up，並讓模型以 z=0 為底
+const world=new THREE.Group(); scene.add(world);   // 幾何載入時就轉成 Y-up
+
+const mat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.62,metalness:.05,side:THREE.DoubleSide});
+const loader=new THREE.STLLoader();
+let loaded=0, total=4;
+const lidPivot=new THREE.Object3D();     // 鉸鏈軸
+lidPivot.position.set(0, HZ, -HY);      // three 座標：模型 z→y、模型 y→-z
+world.add(lidPivot);
+
+function done(){ if(++loaded===total){ document.getElementById('loading').style.display='none'; fillInfo(); } }
+
+loader.load('stl/laptop_base_shell.stl', g=>{ g.rotateX(-Math.PI/2); g.computeVertexNormals();
+  const m=new THREE.Mesh(g,mat(0xd6d0c2)); m.castShadow=m.receiveShadow=true; world.add(m); done(); });
+loader.load('stl/laptop_bottom_plate.stl', g=>{ g.rotateX(-Math.PI/2); g.computeVertexNormals();
+  const m=new THREE.Mesh(g,mat(0xc4beb1)); m.castShadow=m.receiveShadow=true; world.add(m); done(); });
+loader.load('stl/laptop_button.stl', g=>{ g.rotateX(-Math.PI/2); g.computeVertexNormals();
+  const m=new THREE.Mesh(g,mat(0xe0661f)); m.castShadow=true; world.add(m); done(); });
+loader.load('stl/laptop_lid.stl', g=>{ g.rotateX(-Math.PI/2); g.computeVertexNormals();
+  const m=new THREE.Mesh(g,mat(0xf2ecdf)); m.castShadow=m.receiveShadow=true;
+  m.position.set(0, 0, -(HY-LD/2) * -1);   // 合蓋：相對鉸鏈往 +z 50mm
+  lidPivot.add(m); done(); });
+
+// 螢幕示意貼在上蓋內面
+const sc=document.createElement('canvas'); sc.width=480; sc.height=272;
+const sx=sc.getContext('2d');
+sx.fillStyle='#0b1220'; sx.fillRect(0,0,480,272);
+sx.fillStyle='#16233a'; for(let i=0;i<10;i++) sx.fillRect(0,244-i*16,480,2);
+sx.fillStyle='#7ee787'; sx.font='bold 26px monospace'; sx.fillText('MiniBook MM96-L',18,40);
+sx.fillStyle='#8fa3b8'; sx.font='14px monospace'; sx.fillText('BLUETOOTH A2DP · 4.3" 480x272',18,62);
+sx.fillStyle='#ffb74d'; sx.font='bold 15px monospace'; sx.fillText('NOW PLAYING',18,210);
+sx.fillStyle='#e8eef6'; sx.fillText('close my eyes...',18,232);
+for(let i=0;i<20;i++){const h=8+Math.abs(Math.sin(i*.6))*54;sx.fillStyle=i%3?'#4ade80':'#ffb74d';
+  sx.fillRect(250+i*11,204-h,7,h);}
+const tex=new THREE.CanvasTexture(sc);
+const screen=new THREE.Mesh(new THREE.PlaneGeometry(96,55),
+  new THREE.MeshBasicMaterial({map:tex, side:THREE.DoubleSide}));
+screen.position.set(0, 3.2, (HY-LD/2)); screen.rotation.y = 0;   // 正面朝 +z（使用者）
+lidPivot.add(screen);
+
+const openEl=document.getElementById('open');
+function applyOpen(){
+  const deg=+openEl.value;
+  document.getElementById('deg').textContent=deg+'°';
+  lidPivot.rotation.x=-deg*Math.PI/180;
+  screen.visible = deg>8;
+}
+openEl.addEventListener('input',applyOpen);
+
+function fillInfo(){
+  fetch('cad/export/laptop_dims.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+    document.getElementById('d-closed').textContent=`${d.closed.W} × ${d.closed.D} × ${d.closed.H} mm`;
+    document.getElementById('d-base').textContent=`${d.outer.W} × ${d.outer.D} × ${d.outer.H} mm`;
+    document.getElementById('d-lid').textContent=`${d.lid.W} × ${d.lid.D} × ${d.lid.T} mm`;
+    document.getElementById('d-win').textContent=`${d.screen.window[0]} × ${d.screen.window[1]} mm`;
+    document.getElementById('d-hinge').textContent=`Ø${d.hinge.axis_pin} 軸 × ${d.hinge.len} · 開 ${d.hinge.open_deg}°`;
+    const t=document.getElementById('tbl');
+    t.innerHTML='<tr><td>零件</td><td>位置</td><td>結果</td></tr>'+d.parts.map(p=>{
+      const bad=p.issues&&p.issues.length;
+      return `<tr><td>${p.name}</td><td>${p.note||''}</td><td class="${bad?'bad':'ok'}">${bad?p.issues.join('、'):'✓ 不干涉'}</td></tr>`;
+    }).join('');
+    const v=document.getElementById('verdict');
+    v.className=d.conflicts.length?'bad':'ok';
+    v.textContent=d.conflicts.length?('✗ '+d.conflicts.join('；')):'✓ 全部零件尺寸檢查通過（干涉 0 件）';
+    window.__minibook={parts:total,conflicts:d.conflicts.length,closed:d.closed};
+  }).catch(e=>{ document.getElementById('verdict').textContent='dims.json 讀取失敗'; });
+}
+const VIEWS={iso:[170,120,230],front:[0,60,300],side:[300,60,10],top:[0,320,10]};
+function setView(k){const v=VIEWS[k];camera.position.set(v[0],v[1],v[2]);controls.target.set(0,40,0);}
+window.setView=setView;
+document.getElementById('spin').addEventListener('click',e=>{
+  controls.autoRotate=!controls.autoRotate; controls.autoRotateSpeed=1.1;
+  e.target.textContent='自動旋轉：'+(controls.autoRotate?'開':'關');
+});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+(function loop(){requestAnimationFrame(loop);controls.update();renderer.render(scene,camera);})();
+</script>
+</body>
+</html>
