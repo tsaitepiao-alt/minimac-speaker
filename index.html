@@ -151,7 +151,7 @@ PARTS.forEach((p, i)=>{
 function finish(){
   document.getElementById('loading').style.display='none';
   window.__minimac = {parts: parts.length, status:'loaded'};
-  fetch('cad/export/dims.json').then(r=>r.json()).then(fillDims).catch(()=>{});
+  fetch('cad/export/dims.json?v=' + Date.now()).then(r=>r.json()).then(fillDims).catch(()=>{});
 }
 
 function fillDims(d){
