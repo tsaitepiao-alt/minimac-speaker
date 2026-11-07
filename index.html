@@ -116,7 +116,10 @@ scene.add(ground);
 
 const mat = (c)=> new THREE.MeshStandardMaterial({color:c, roughness:0.55, metalness:0.08,
   flatShading:false, side:THREE.DoubleSide});
-const group = new THREE.Group(); scene.add(group);
+const group = new THREE.Group();
+// STL 是 Z-up，three.js 是 Y-up：整體轉正，否則模型會像平躺
+group.rotation.x = -Math.PI / 2;
+scene.add(group);
 const parts = [];
 
 // 螢幕示意（貼在面板後面，讓窗不是空的）
