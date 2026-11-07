@@ -46,6 +46,8 @@ A(f'<text x="{X(KNOB_CX):.0f}" y="{Y(KNOB_CV)+4:.0f}" font-size="11" fill="#fff"
 # 字樣：品牌條 + 功能字
 # 實拍確認：MINITOO 在螢幕「上方」邊框，鍵盤座再一行小字
 A(f'<text x="{X(0):.0f}" y="{Y(SCR_C+SCR_H/2+5.5):.0f}" font-size="{2.8*S*0.42:.0f}" font-weight="700" letter-spacing="2.4" fill="#3a3a3a" text-anchor="middle">M I N I T O O</text>')
+# 兩張實拍照互相矛盾：一張 MINITOO 在螢幕上方、一張在下方 → 兩案並列待實機確認
+A(f'<text x="{X(0):.0f}" y="{Y(SCR_C-SCR_H/2-4.0):.0f}" font-size="{2.6*S*0.42:.0f}" font-weight="700" letter-spacing="2.2" fill="#b06a00" text-anchor="middle" stroke="#b06a00" stroke-dasharray="3 3" stroke-width="0.6">M I N I T O O（B案：螢幕下方）</text>')
 A(f'<text x="{X(0):.0f}" y="{Y(3.2):.0f}" font-size="{1.5*S*0.42:.0f}" letter-spacing="0.8" fill="#555" text-anchor="middle">RETRO PC-STYLE BLUETOOTH SPEAKER</text>')
 legend = [
     (-14.8, 12.0, "電源圖示"),
@@ -63,7 +65,7 @@ rows = [
     ("功能字", "字高 2.2mm，深灰 #555；四鍵各一組（電源圖示／MODE／播放鍵／±）"),
     ("製程", "絲印 1 色（深灰）或 UV 印刷；亦可雷雕 0.15 深（不需油墨）"),
     ("公差", "字樣位置 ±0.2mm；與邊緣距離 ≥ 2.5mm"),
-    ("實拍1", "MINITOO 在螢幕上方邊框；鍵盤座印 RETRO PC-STYLE …；旋鈕紅色"),
+    ("實拍1", "MINITOO 位置兩張照矛盾（上／下）→ 兩案並列，待實機定案"),
     ("實拍2", "USB-C＋卡片槽在正面底部；−SUBWOOFER− 在頂面；底部 CE/FCC"),
     ("注意", "本稿依照片推定；實機到位後以卡尺校核再定稿"),
 ]
